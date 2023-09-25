@@ -1,3 +1,4 @@
+import "./index.css"
 import { ChangeEvent } from "react";
 
 interface CheckBoxInputProps {
@@ -13,9 +14,9 @@ export default function CheckBoxInput({ label, state }: CheckBoxInputProps) {
   };
 
   return (
-    <div>
-      <p className="input-title">{label}</p>
-      <input className="number-input" type="checkbox" checked={checked} onChange={onChangeCheck} />
+    <div className="checkbox-input">
+      <p>{label}</p>
+      <input type="checkbox" checked={checked} onChange={onChangeCheck} />
     </div>
   );
 }

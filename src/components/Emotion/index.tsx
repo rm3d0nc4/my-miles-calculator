@@ -1,3 +1,4 @@
+import "./index.css"
 import sentimentExcited from "../../assets/icons/sentiment_excited.svg";
 import sentimentSatisfied from "../../assets/icons/sentiment_satisfied.svg";
 import sentimentNeutral from "../../assets/icons/sentiment_neutral.svg";

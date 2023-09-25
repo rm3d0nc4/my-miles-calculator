@@ -1,4 +1,4 @@
-
+import "./index.css"
 interface PurchaseStatusProps {
     pricePerThousand: number;
 }
@@ -7,6 +7,7 @@ interface PurchaseStatusProps {
 export default function PurchaseStatus({pricePerThousand}: PurchaseStatusProps) {
     let message: string;
 
+    console.log(`Preço: ${pricePerThousand}`)
     if(pricePerThousand <= 15.5)  message = 'Excelente compra!'
     else if(pricePerThousand <= 17.5) message = 'Ainda vale a pena!'
     else if(pricePerThousand <= 35.0) message = 'Compre poucas  e com urgencia!'

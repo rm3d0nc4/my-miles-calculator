@@ -1,3 +1,4 @@
+import "./index.css"
 import { ChangeEvent } from "react";
 
 interface NumberInputProps {
@@ -14,9 +15,11 @@ export default function NumberInput({ label, state }: NumberInputProps) {
   };
 
   return (
-    <div>
+    <>
       <p className="input-title">{label}</p>
-      <input className="number-input" type="number" value={value} onChange={onChangeValue} />
-    </div>
+      <div className="number-input">
+        <input type="number" value={value} onChange={onChangeValue} />
+      </div>
+    </>
   );
 }

@@ -21,34 +21,67 @@ export default function Result({ data }: ResultProps) {
 
   return (
     <div id="view-result">
-      <div>
+      <div className="title">
+        <hr />
+        <h4>Resultado</h4>
+        <hr />
+      </div>
+      <PurchaseStatus pricePerThousand={isNaN(finalPricePerThousand)? 0 : finalPricePerThousand}></PurchaseStatus>
+
+      <div className="summary">
         <p>
           Cada milheiro sairá por <strong>R${isNaN(finalPricePerThousand) ? 0.0 : finalPricePerThousand.toFixed(2)}</strong>
         </p>
-        <Emotion pricePerThousand={finalPricePerThousand} />
+        <Emotion pricePerThousand={isNaN(finalPricePerThousand)? 0 : finalPricePerThousand} />
       </div>
+      <div className="details">
+        <table>
+          <tr>
+            <td>Quantidade de milhas:</td>
+            <td className="value">{data.numberOfMiles}</td>
+          </tr>
+          <tr>
+            <td>Preço por milheiro:</td>
+            <td className="value"> R${data.pricePerThousand.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Valor total:</td>
+            <td className="value"> 
+            ({data.numberOfMiles}/1000) x {data.pricePerThousand} = R${totalPrice.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td>Desconto (Promo):</td>
+            <td className="value">
+              {data.discount.toFixed(1)}% = - R${discountValueForPromo.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td>Desconto (Assinante Clube+):</td>
+            <td className="value">
+              {data.isSubscriber ? 5 : 0}% = - R${discountValueForSubscriber.toFixed(2)}
+            </td>
+          </tr>
+          <tr>
+            <td>Bônus (Promo):</td>
+            <td className="value">
+              {data.bonus}% = + {bonusMilesForPromo.toFixed(0)}
+            </td>
+          </tr>
+          <td>Bônus (Assinante Clube+):</td>
+          <td className="value">
+            {data.isSubscriber ? 30 : 0}% = + {bonusMilesForSubscriber}
+          </td>
+          <tr>
+            <td>Valor final:</td>
 
-      <PurchaseStatus pricePerThousand={finalPricePerThousand}></PurchaseStatus>
-      <div className="summary">
-        <p>Quantidade de milhas: {data.numberOfMiles}</p>
-        <p>Preço por milheiro: R${data.pricePerThousand.toFixed(2)}</p>
-        <p>
-          Valor total: ({data.numberOfMiles} / 1000) x R${data.pricePerThousand.toFixed(2)} = R${totalPrice.toFixed(2)}
-        </p>
-        <p>
-          Desconto (Promo): {data.discount.toFixed(1)}% = - R${discountValueForPromo.toFixed(2)}
-        </p>
-        <p>
-          Desconto (Assinante Clube+): {data.isSubscriber ? 5 : 0}% = - R${discountValueForSubscriber.toFixed(2)}
-        </p>
-        <p>
-          Bônus (Promo): {data.bonus}% = + {bonusMilesForPromo.toFixed(0)}
-        </p>
-        <p>
-          Bônus (Assinante Clube+): {data.isSubscriber ? 30 : 0}% = + {bonusMilesForSubscriber}
-        </p>
-        <p>Valor final: R${finalPrice.toFixed(2)}</p>
-        <p>Quantidade de milhas final: {finalNumberOfMiles.toFixed(0)}</p>
+            <td className="value">R${finalPrice.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td>Quantidade de milhas final:</td>
+            <td className="value">{finalNumberOfMiles.toFixed(0)}</td>
+          </tr>
+        </table>
         <p>R${isNaN(finalPricePerThousand) ? 0.0 : finalPricePerThousand.toFixed(2)} por milheiro </p>
       </div>
     </div>

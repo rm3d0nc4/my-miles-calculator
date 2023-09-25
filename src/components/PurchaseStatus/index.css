@@ -1,0 +1,36 @@
+.range-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+    padding: 10px 50px;
+    border: 1px solid rgb(161, 161, 161);
+    border-radius: 10px;
+    text-align: center;
+    
+}
+.range-div p {
+    margin: 0px;
+    font-size: 10px;
+}
+
+.range-div input {
+    -webkit-appearance: none;
+    appearance: none;
+    background: linear-gradient(to left, red, yellow,green);
+    border-radius: 20px;
+    height: 20px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+}
+
+.range-div input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #4f378b;
+    height: 25px;
+    width: 5px;
+    border-radius: 10px;
+}

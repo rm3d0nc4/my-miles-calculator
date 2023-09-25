@@ -45,26 +45,21 @@ function App() {
   };
 
   return (
-    <>
-      <AppBar />
-
+    <div className="main-div">
+      <div id="appbar-container">
+        <AppBar />
+      </div>
       <MilesInput state={[numberOfMiles, setNumberOfMiles]}></MilesInput>
+      <NumberInput label="Valor do milheiro" state={[pricePerThousand, setPricePerThousand]} />
+      <NumberInput label="Desconto (%)" state={[discount, setDiscount]} />
+      <NumberInput label="Bônus (%)" state={[bonus, setBonus]} />
+      <CheckBoxInput label="Assinante Clube+" state={[isSubscriber, setIsSubscriber]}></CheckBoxInput>
 
-      <div>
-        <NumberInput label="Valor do milheiro" state={[pricePerThousand, setPricePerThousand]} />
-        <NumberInput label="Desconto" state={[discount, setDiscount]} />
-        <NumberInput label="Bônus" state={[bonus, setBonus]} />
-        <CheckBoxInput label="Assinante Clube+" state={[isSubscriber, setIsSubscriber]}></CheckBoxInput>
-      </div>
-
-      <div>
-        <button id="calculate-button" onClick={onClickCalculateButton}>
-          Calcular
-        </button>
-      </div>
-      <hr />
+      <button id="calculate-button" onClick={onClickCalculateButton}>
+        Calcular
+      </button>
       {resultIsVisible ? result : null}
-    </>
+    </div>
   );
 }
 

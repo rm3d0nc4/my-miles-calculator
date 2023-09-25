@@ -1,0 +1,25 @@
+.checkbox-input {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkbox-input input {
+    height: 20px;
+    width: 30px;
+    margin: 10px;
+    background-color: red;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 20px;
+}
+.checkbox-input p {
+    margin: 10px;
+
+}
+
+.checkbox-input input:checked {
+    accent-color: #4f378b;
+}

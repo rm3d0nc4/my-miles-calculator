@@ -1,16 +1,15 @@
+import "./index.css";
 import { ChangeEvent } from "react";
 import expandLess from "../../assets/icons/expand_less.svg";
 import expandMore from "../../assets/icons/expand_more.svg";
 
 interface MilesInputProps {
-    state : [number, React.Dispatch<React.SetStateAction<number>>]
+  state: [number, React.Dispatch<React.SetStateAction<number>>];
 }
 
-export default function MilesInput({state}: MilesInputProps) {
+export default function MilesInput({ state }: MilesInputProps) {
+  const [numberOfMiles, setNumberOfMiles] = state;
 
-    const [numberOfMiles, setNumberOfMiles] = state;
-
-  // Ações no input de milhas
   const onChangeNumberOfMiles = (event: ChangeEvent<HTMLInputElement>) => {
     setNumberOfMiles(Number(event.target.value));
   };
@@ -23,27 +22,29 @@ export default function MilesInput({state}: MilesInputProps) {
   };
 
   return (
-    <div id="input-miles">
+    <>
       <p className="input-title">Milhas</p>
-      <button className="1k-button" onClick={() => decreaseValue(1000)}>
-        <img src={expandMore} alt="expand more" />
-        1k
-      </button>
-      <button className="10k-button" onClick={() => decreaseValue(10000)}>
-        <img src={expandMore} alt="expand more" />
-        10k
-      </button>
+      <div id="input-miles">
+        <button className="k1-button" onClick={() => decreaseValue(1000)}>
+          <img src={expandMore} alt="expand more" />
+          1k
+        </button>
+        <button className="k10-button" onClick={() => decreaseValue(10000)}>
+          <img src={expandMore} alt="expand more" />
+          10k
+        </button>
 
-      <input type="number" name="miles-value" value={numberOfMiles} onChange={onChangeNumberOfMiles} id="miles-value" />
+        <input type="number" name="miles-value" value={numberOfMiles} onChange={onChangeNumberOfMiles} id="miles-value" />
 
-      <button className="10k-button" onClick={() => increaseValue(10000)}>
-        <img src={expandLess} alt="expand less" />
-        10k
-      </button>
-      <button className="1k-button" onClick={() => increaseValue(1000)}>
-        <img src={expandLess} alt="expand less" />
-        1k
-      </button>
-    </div>
+        <button className="k10-button" onClick={() => increaseValue(10000)}>
+          <img src={expandLess} alt="expand less" />
+          10k
+        </button>
+        <button className="k1-button" onClick={() => increaseValue(1000)}>
+          <img src={expandLess} alt="expand less" />
+          1k
+        </button>
+      </div>
+    </>
   );
 }
