@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
+import Result from "./components/Result";
+import ResultData from "./interfaces/result_data";
+import MilesInput from "./components/MilesInput";
+import NumberInput from "./components/NumberInput";
+import CheckBoxInput from "./components/CheckboxInput";
+import AppBar from "./components/AppBar";
 function App() {
-  const [count, setCount] = useState(0)
+  // Entradas
+  const [numberOfMiles, setNumberOfMiles] = useState<number>(0);
+  const [pricePerThousand, setPricePerThousand] = useState<number>(0);
+  const [discount, setDiscount] = useState<number>(0);
+  const [bonus, setBonus] = useState<number>(0);
+  const [isSubscriber, setIsSubscriber] = useState<boolean>(false);
+
+  // Visualizações
+  const [resultIsVisible, setResultIsVisible] = useState(false);
+  const [result, setResult] = useState<JSX.Element>(
+    <Result
+      data={{
+        numberOfMiles: 0,
+        pricePerThousand: 0,
+        discount: 0,
+        bonus: 0,
+        isSubscriber: false,
+      }}
+    />
+  );
+
+  const onClickCalculateButton = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault;
+
+    const data: ResultData = {
+      numberOfMiles,
+      pricePerThousand,
+      discount,
+      bonus,
+      isSubscriber,
+    };
+
+    setResult(<Result data={data} />);
+    setResultIsVisible(true);
+  };
 
   return (
     <>
+      <AppBar />
+
+      <MilesInput state={[numberOfMiles, setNumberOfMiles]}></MilesInput>
+
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <NumberInput label="Valor do milheiro" state={[pricePerThousand, setPricePerThousand]} />
+        <NumberInput label="Desconto" state={[discount, setDiscount]} />
+        <NumberInput label="Bônus" state={[bonus, setBonus]} />
+        <CheckBoxInput label="Assinante Clube+" state={[isSubscriber, setIsSubscriber]}></CheckBoxInput>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+
+      <div>
+        <button id="calculate-button" onClick={onClickCalculateButton}>
+          Calcular
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <hr />
+      {resultIsVisible ? result : null}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
